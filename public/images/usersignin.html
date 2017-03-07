@@ -1,0 +1,123 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="cover">
+      <div class="navbar"></div>
+      <div class="navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span>Coolwear</span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active">
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="blogin">Customer Login</a>
+              </li>
+              <li>
+                <a href="xyzlogin">Coolwear Login</a>
+              </li>
+              <li>
+                <a href="signup">Sign Up</a>
+              </li>
+              <li>
+                <a href="/logout">Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="background-image-fixed cover-image" style="background-image : url('/Users/oscarguerrero/prework/code/labs/proj2/public/images/aquawater.jpeg')"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="text-muted" contenteditable="true">Coolwear Customer Login</h1>
+            <p class="text-inverse">For distributors only</p>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">Distributor Login&nbsp;</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <form action="/order" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+  </div>
+  &lt;% if (typeof message != "undefined") { %&gt;
+    <div class="error-message">&lt;%= message %&gt;</div>
+  &lt;% } %&gt;
+  <div>
+    <input type="submit" value="Log In">
+  </div>
+</form>
+            <form role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter your email">
+                  <span class="input-group-btn">
+                    <a class="btn btn-success" type="submit">Go</a>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center text-primary">Team</h1>
+            <p class="text-center">We are a group of skilled individuals.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="center-block img-circle img-responsive">
+            <h3 class="text-center">John Doe</h3>
+            <p class="text-center">Developer</p>
+          </div>
+          <div class="col-md-4">
+            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="center-block img-circle img-responsive">
+            <h3 class="text-center">John Doe</h3>
+            <p class="text-center">Developer</p>
+          </div>
+          <div class="col-md-4">
+            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="center-block img-circle img-responsive">
+            <h3 class="text-center">John Doe</h3>
+            <p class="text-center">Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>

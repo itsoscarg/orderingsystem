@@ -94,6 +94,8 @@ passport.authenticate("local", {
 
 function checkRoles(role) {
   return function(req, res, next) {
+    console.log(req.user);
+      console.log(req.user.role);
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
     } else {
@@ -104,11 +106,6 @@ function checkRoles(role) {
 
 authRoutes.get('/orderview', checkRoles('ADMIN'), (req, res) => {
   res.render('xyz/orderview', {user: req.user});
-});
-
-
-authRoutes.get("/orderview", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("xyz/orderview", { user: req.user });
 });
 
 authRoutes.post("/orderview",
