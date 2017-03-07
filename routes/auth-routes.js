@@ -45,7 +45,7 @@ authRoutes.post("/signup", (req, res, next) => {
     });
   });
 });
-
+////////////////////
 const passport = require('passport');
 
 authRoutes.get("/blogin", (req, res, next) => {
@@ -63,8 +63,61 @@ passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-authRoutes.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("private", { user: req.user });
+
+authRoutes.get("/xyzlogin", (req, res, next) => {
+  res.render("xyz/xyzlogin", {
+   errorMessage: req.flash('error')
+  });
 });
+
+authRoutes.post("/xyzlogin",
+passport.authenticate("local", {
+  successRedirect: "/orderview",
+  failureRedirect: "/xyzlogin",
+  failureFlash: true,
+  successFlash: 'You have been logged in, user!',
+  passReqToCallback: true
+}));
+
+authRoutes.get("/order", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("buyer/order", { user: req.user });
+});
+
+authRoutes.post("/order",
+passport.authenticate("local", {
+  successRedirect: "/order",
+  failureRedirect: "/blogin",
+  failureFlash: true,
+  successFlash: 'You have been logged in, user!',
+  passReqToCallback: true
+}));
+
+authRoutes.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+function checkRoles(role) {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === role) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  };
+}
+
+// var checkGuest  = checkRoles('GUEST');
+// var checkEditor = checkRoles('EDITOR');
+// var checkAdmin  = checkRoles('ADMIN');
+
+authRoutes.get('/orderview', checkRoles('ADMIN'), (req, res) => {
+  res.render('xyz/orderview', {user: req.user});
+});
+
+// authRoutes.get('/orderview', checkAdmin, (req, res) => {
+//   res.render('xyz/orderview', {user: req.user});
+// });
+
 
 module.exports = authRoutes;

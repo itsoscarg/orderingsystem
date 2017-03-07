@@ -10,7 +10,7 @@ const session       = require("express-session");
 const bcrypt        = require("bcrypt");
 const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const flash = require("connect-flash");
+const flash         = require("connect-flash");
 
 const User          = require('./models/user.js');
 
@@ -33,21 +33,32 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
-
-const index = require('./routes/index');
-app.use('/', index);
-
-const authRoutes = require("./routes/auth-routes");
-app.use('/', authRoutes);
-
 app.use(session({
   secret: "our-passport-local-strategy-app",
   resave: true,
   saveUninitialized: true
 }));
 
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      next(err);
+    } else if (!user) {
+      next(null, false, { message: "Incorrect username" });
+    } else if (!bcrypt.compareSync(password, user.password)) {
+      next(null, false, { message: "Incorrect password" });
+    } else {
+      next(null, user);
+    }
+  });
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -60,24 +71,16 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-app.use(flash());
-passport.use(new LocalStrategy({
-  passReqToCallback: true
-  }, (req, username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
 
-    return next(null, user);
-  });
-}));
+
+const index = require('./routes/index');
+app.use('/', index);
+
+const authRoutes = require("./routes/auth-routes");
+app.use('/', authRoutes);
+
+
+
 
 
 
