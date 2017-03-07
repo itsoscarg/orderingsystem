@@ -1,4 +1,4 @@
-<h1>Customer Login</h1>
+<!-- <h1>Customer Login</h1>
 <form action="/order" method="POST">
   <div>
     <label for="username">Username:</label>
@@ -14,4 +14,86 @@
   <div>
     <input type="submit" value="Log In">
   </div>
+</form> -->
+
+<div class="cover">
+     <div class="navbar"></div>
+     <div class="navbar">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="#"><span>Coolwear</span></a>
+         </div>
+         <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+           <ul class="nav navbar-nav navbar-right">
+             <li class="active">
+               <a href="/">Home</a>
+             </li>
+             <li>
+               <a href="blogin">Customer Login</a>
+             </li>
+             <li>
+               <a href="xyzlogin">Coolwear Login</a>
+             </li>
+             <li>
+               <a href="signup">Sign Up</a>
+             </li>
+             <li>
+               <a href="/logout">Log Out</a>
+             </li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="background-image-fixed cover-image" style="background-image : url('https://unsplash.imgix.net/reserve/QTrNn7DETWGsjyS5L2n5__MG_8345.jpg?w=1024&amp;q=50&amp;fm=jpg&amp;s=f89d9bb3940033eca06ed432a250bb6d')"></div>
+     <div class="container">
+       <div class="row">
+         <div class="col-md-12 text-center">
+           <h1 class="text-muted" contenteditable="true">Coolwear Customer Login</h1>
+           <br>
+           <br>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="section">
+     <div class="container">
+       <div class="row">
+         <div class="col-md-12">
+           <h1 class="text-center">Distributor Login&nbsp;</h1>
+         </div>
+       </div>
+
+       <div class="row text-center">
+         <div class="col-md-offset-3 col-md-6">
+           <div class="form-group">
+             <div class="input-group">
+               <form action="/order" method="POST">
+                 <label for="username">Username:</label>
+                 <input type="text" placeholder="Enter your Username"
+                 name="username">
+                 <p></p>
+                 <label for="password">Password:</label>
+                 <input type="text" placeholder="Enter your password"
+                 name="password">
+                 <p></p>
+
+             </div>
+             <% if (typeof message != "undefined") { %>
+               <div class="error-message"><%= message %></div>
+             <% } %>
+             <div>
+               <input type="submit" value="Log In">
+             </div>
 </form>
+
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>

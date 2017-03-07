@@ -1,17 +1,81 @@
-<h1>Company Login</h1>
-<form action="/orderview" method="POST">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" name="username">
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-  </div>
-  <% if (typeof message != "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
-  <div>
-    <input type="submit" value="Log In">
-  </div>
+
+<body>
+    <div class="cover">
+      <div class="navbar"></div>
+      <div class="navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span>Coolwear</span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active">
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="blogin">Customer Login</a>
+              </li>
+              <li>
+                <a href="xyzlogin">Coolwear Login</a>
+              </li>
+              <li>
+                <a href="signup">Sign Up</a>
+              </li>
+              <li>
+                <a href="/logout">Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cover-image" style="background-image : url('https://unsplash.imgix.net/photo-1422728221357-57980993ea99?w=1024&amp;q=50&amp;fm=jpg&amp;s=b4a34018d745e33048bcfc326cb9907b')"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="text-inverse">Coolwear Login</h1>
+            <p class="text-inverse">Coolwear providers</p>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center text-primary">Coolwear Providers</h1>
+            <p class="text-center"></p>
+          </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 text-center">
+            <div class="form-group">
+              <div class="input-group">
+                <form action="/orderview" method="POST" class="text-center">
+                  <label for="username">Username:</label>
+                  <input type="text" placeholder="Enter your Username"
+                  name="username">
+                  <p></p>
+                  <label for="password">Password:</label>
+                  <input type="text" placeholder="Enter your password"
+                  name="password">
+                  <p></p>
+              </div>
+              <input type="submit" value="Log In">
 </form>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+    </div>
+  </body
