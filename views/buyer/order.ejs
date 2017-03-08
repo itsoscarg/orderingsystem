@@ -4,3 +4,12 @@
     <a href="/">Index</a>
   </div>
 <% } %>
+<ul>
+    <% hhh.forEach((oneProduct) => { %>
+
+        <h2> <%= oneProduct.name %> </h2>
+        <p>  <%= oneProduct.price %> </p>
+        <p><img src=  <%= oneProduct.imageUrl %> ></p>
+    
+          <% }) %>
+        </ul>

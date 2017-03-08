@@ -1,6 +1,7 @@
 const express    = require("express");
 const authRoutes = express.Router();
 const ensureLogin = require("connect-ensure-login");
+const Product = require('../models/product.js');
 
 // User model
 const User       = require("../models/user");
@@ -80,7 +81,16 @@ passport.authenticate("local", {
 }));
 
 authRoutes.get("/order", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("buyer/order", { user: req.user });
+  Product.find( (err, products) => {
+    if (err) {
+      next(err);
+      return;
+    }
+  res.render("buyer/order", {
+    user: req.user,
+    hhh:products
+    });
+  });
 });
 
 authRoutes.post("/order",
@@ -91,6 +101,29 @@ passport.authenticate("local", {
   successFlash: 'You have been logged in, user!',
   passReqToCallback: true
 }));
+
+authRoutes.get('/products/:id', (req, res, next) => {
+    //                 --
+    //                  |
+    //                  --------
+    //                         |
+  const productId = req.params.id;
+
+    // db.products.findOne({ _id: productId })
+
+
+  Product.findById(productId, (err, prodDoc) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    res.render('buyer/order', {
+      product: products
+    });
+  });
+});
+
 
 function checkRoles(role) {
   return function(req, res, next) {
