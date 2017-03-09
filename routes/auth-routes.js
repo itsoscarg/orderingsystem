@@ -2,7 +2,7 @@ const express    = require("express");
 const authRoutes = express.Router();
 const ensureLogin = require("connect-ensure-login");
 const Product = require('../models/product.js');
-
+const Order = require('../models/neworder.js');
 // User model
 const User       = require("../models/user");
 
@@ -57,7 +57,7 @@ authRoutes.get("/blogin", (req, res, next) => {
 
 authRoutes.post("/blogin",
 passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/order",
   failureRedirect: "/blogin",
   failureFlash: true,
   successFlash: 'You have been logged in, user!',
@@ -80,7 +80,7 @@ passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-authRoutes.get("/order", ensureLogin.ensureLoggedIn(), (req, res) => {
+authRoutes.get("/order", ensureLogin.ensureLoggedIn('/blogin'), (req, res) => {
   Product.find( (err, products) => {
     if (err) {
       next(err);
@@ -93,14 +93,41 @@ authRoutes.get("/order", ensureLogin.ensureLoggedIn(), (req, res) => {
   });
 });
 
-authRoutes.post("/order",
-passport.authenticate("local", {
-  successRedirect: "/order",
-  failureRedirect: "/blogin",
-  failureFlash: true,
-  successFlash: 'You have been logged in, user!',
-  passReqToCallback: true
-}));
+  authRoutes.post("/order", (req, res, next) => {
+    const orderInfo = {
+      name: req.body.name,
+      price: req.body.price
+    };
+  });
+
+//   const theOrder = new Order(orderInfo);
+//
+//   theOrder.save((err) => {
+//     if (err) {
+//       res.render('products/new', {
+//       errorMessage: 'Validation failed!',
+//       errors: theProduct.errors
+//       });
+//       return;
+//     }
+//       res.redirect('/products');
+// //       });
+//       });
+  // passport.authenticate("local", {
+  //   successRedirect: "/order",
+  //   failureRedirect: "/blogin",
+  //   failureFlash: true,
+  //   successFlash: 'You have been logged in, user!',
+  //   passReqToCallback: true
+  // }));
+
+// router.post('/products', (req, res, next) => {
+//   const productInfo = {
+//     name: req.body.name,
+//     price: req.body.price,
+//     imageUrl: req.body.imageUrl,
+//     description: req.body.description
+//   };
 
 authRoutes.get('/products/:id', (req, res, next) => {
     //                 --
