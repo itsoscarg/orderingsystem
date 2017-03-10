@@ -93,41 +93,33 @@ authRoutes.get("/order", ensureLogin.ensureLoggedIn('/blogin'), (req, res) => {
   });
 });
 
+//Post Order Route to create your Order in the db
+
   authRoutes.post("/order", (req, res, next) => {
-    const orderInfo = {
-      name: req.body.name,
-      price: req.body.price
-    };
-  });
+    // const name = req.body.name;
+    const quantity1 = req.body.qnt0;
+    const quantity2 = req.body.qnt1;
 
-//   const theOrder = new Order(orderInfo);
-//
-//   theOrder.save((err) => {
-//     if (err) {
-//       res.render('products/new', {
-//       errorMessage: 'Validation failed!',
-//       errors: theProduct.errors
-//       });
-//       return;
-//     }
-//       res.redirect('/products');
-// //       });
-//       });
-  // passport.authenticate("local", {
-  //   successRedirect: "/order",
-  //   failureRedirect: "/blogin",
-  //   failureFlash: true,
-  //   successFlash: 'You have been logged in, user!',
-  //   passReqToCallback: true
-  // }));
+    //Price has to be dynamic
+    var firstItem = (119 * quantity1);
+    var secondItem = (139 * quantity2);
 
-// router.post('/products', (req, res, next) => {
-//   const productInfo = {
-//     name: req.body.name,
-//     price: req.body.price,
-//     imageUrl: req.body.imageUrl,
-//     description: req.body.description
-//   };
+    const newOrder = Order({
+      name: "Order 1",
+      price: firstItem + secondItem
+    });
+
+    newOrder.save((err) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/order");
+      } else {
+        res.redirect("/orderview");
+      }
+        });
+    });
+
+
 
 authRoutes.get('/products/:id', (req, res, next) => {
     //                 --
@@ -135,9 +127,6 @@ authRoutes.get('/products/:id', (req, res, next) => {
     //                  --------
     //                         |
   const productId = req.params.id;
-
-    // db.products.findOne({ _id: productId })
-
 
   Product.findById(productId, (err, prodDoc) => {
     if (err) {
@@ -165,7 +154,17 @@ function checkRoles(role) {
 }
 
 authRoutes.get('/orderview', checkRoles('ADMIN'), (req, res) => {
-  res.render('xyz/orderview', {user: req.user});
+
+  Order.find({}, (err, result) => {
+    if (err){
+      console.log(error);
+      res.redirect("/");
+    }
+    console.log(result);
+      res.render('xyz/orderview', {user: req.user, orders: result});
+  });
+
+
 });
 
 authRoutes.post("/orderview",

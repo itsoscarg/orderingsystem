@@ -7,9 +7,6 @@ const orderSchema = new Schema({
   },
   price: {
     type: String,
-  },
-  _id: {
-    type: String,
   }
 });
 

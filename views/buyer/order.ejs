@@ -41,8 +41,10 @@
     </div>
 
 
+
 <% if (user) { %>
 <% } %>
+<form action="/order" method="post">
 <ul>
     <% hhh.forEach((oneProduct, i) => { %>
   <section class="info-container">
@@ -60,7 +62,7 @@
             </div>
             <div class="item-qty col-xs-3">
               <label>QTY</label>
-              <input data-prev="0" data-index=" <%= i %>" class="quantity input" value="0">
+              <input data-prev="0" data-index=" <%= i %>" class="quantity input" name="qnt<%= i %>" value="0">
             </div>
 
           </div>
@@ -91,32 +93,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="row text-center">
+
+
               <button type="submit">Place your Order</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-        <!-- <div class="item-subtotal col-xs-2">
-          <span><h1>TOTAL PRICE:<span id="subtotal">$0.00</span></h1></span>
-        </div>
-        <div class="info-container">
-          <div class="col-xs-3">
-            <button id="calc-prices-button" type="button" class="btn btn-success">
-             Calculate Prices
-           </button>
-         </div>
-       </div>
-        <form action="/order" method="post">
-        <button type="submit">Place your Order</button>
-      </form> -->
-
-      <!-- <section>
-        <div class="info-container">
-          <h1 class="total-price-label">
-            Total Price: <span id="total-price">$0.00</span>
-          </h1>
-        </div>
-      </section> -->
